@@ -255,7 +255,7 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
             className="flex flex-col items-center justify-center w-full h-full z-40"
           >
             <video 
-              src="https://firebasestorage.googleapis.com/v0/b/pianoherovideo.firebasestorage.app/o/%E6%89%8B%E6%8C%87.mp4?alt=media&token=d852ddd6-202c-4d1d-9dc9-cb307a4ddc97" 
+              src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E6%89%8B%E6%8C%87.mp4" 
               controls 
               autoPlay 
               preload="auto"
