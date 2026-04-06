@@ -1,0 +1,5 @@
+{
+  "name": "Piano Hero Adventure",
+  "description": "A gamified piano learning adventure for children. Save the world with the power of music!",
+  "requestFramePermissions": ["camera"]
+}
