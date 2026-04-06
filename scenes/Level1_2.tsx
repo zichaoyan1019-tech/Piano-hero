@@ -320,16 +320,18 @@ export const Level1_2: React.FC<Level1_2Props> = ({ onComplete }) => {
   };
 
   return (
-    <div className={`w-full h-full bg-[#fdf6e3] flex flex-col items-center justify-center p-4 relative overflow-hidden text-slate-800 transition-opacity duration-1000 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`w-full h-full bg-[#fdf6e3] overflow-y-auto overflow-x-hidden text-slate-800 transition-opacity duration-1000 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+      <div className="min-h-full w-full flex flex-col items-center justify-start md:justify-center p-4 pt-20 md:p-8 relative">
       
       {/* Fullscreen Video Step */}
       {stage === -1 && (
         <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center animate-fade-in">
           <video 
-            src="https://firebasestorage.googleapis.com/v0/b/pianoherovideo.firebasestorage.app/o/%E5%B7%A6%E5%8F%B3%E6%89%8B.mp4?alt=media&token=a85d8b33-82ef-43e2-a71e-71f90ee72810" 
+            src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E5%B7%A6%E5%8F%B3%E6%89%8B.mp4" 
             autoPlay 
             controls 
             playsInline
+            preload="auto"
             className="w-full h-full object-contain"
             onEnded={() => {
               setStage(0);
@@ -500,7 +502,7 @@ export const Level1_2: React.FC<Level1_2Props> = ({ onComplete }) => {
           </button>
         </div>
       )}
-
+      </div>
     </div>
   );
 };

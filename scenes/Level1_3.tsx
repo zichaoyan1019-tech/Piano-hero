@@ -235,7 +235,8 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
   }, [placedNumbers, qPhase, currentQIndex]);
 
   return (
-    <div className="w-full h-full bg-[#fdf6e3] flex flex-col items-center justify-center relative overflow-hidden font-sans text-slate-800">
+    <div className="w-full h-full bg-[#fdf6e3] overflow-y-auto overflow-x-hidden font-sans text-slate-800">
+      <div className="min-h-full w-full flex flex-col items-center justify-start md:justify-center relative p-4 pt-24 md:p-8">
       
       {/* Voiceover Box */}
       <div className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 w-[90%] max-w-2xl bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border-2 border-pink-200 z-50 text-center pointer-events-none">
@@ -257,6 +258,8 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
               src="https://firebasestorage.googleapis.com/v0/b/pianoherovideo.firebasestorage.app/o/%E6%89%8B%E6%8C%87.mp4?alt=media&token=d852ddd6-202c-4d1d-9dc9-cb307a4ddc97" 
               controls 
               autoPlay 
+              preload="auto"
+              playsInline
               className="w-[90%] max-w-4xl rounded-3xl shadow-2xl border-8 border-white"
               onEnded={handleVideoEnd}
             />
@@ -399,6 +402,7 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </div>
   );
 };

@@ -93,7 +93,7 @@ export default function App() {
   // --- Render ---
 
   return (
-    <div className="w-full h-screen bg-black overflow-hidden relative">
+    <div className="w-full h-[100dvh] bg-black overflow-hidden relative">
       <LandscapePrompt />
       
       {scene === Scene.COVER && (

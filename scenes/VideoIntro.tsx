@@ -13,6 +13,7 @@ export const VideoIntro: React.FC<VideoIntroProps> = ({ onComplete }) => {
         onEnded={onComplete}
         playsInline
         autoPlay
+        preload="auto"
       />
       
       <button

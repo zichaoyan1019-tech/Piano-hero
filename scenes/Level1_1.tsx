@@ -122,7 +122,8 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
   };
 
   return (
-    <div className={`w-full h-full bg-[#fdf6e3] flex items-center justify-center p-4 md:p-8 relative overflow-hidden text-slate-800 transition-opacity duration-1000 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+    <div className={`w-full h-full bg-[#fdf6e3] overflow-y-auto overflow-x-hidden text-slate-800 transition-opacity duration-1000 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
+      <div className="min-h-full w-full flex flex-col items-center justify-start md:justify-center p-4 pt-20 md:p-8 relative">
       
       {/* Quiz Phase Background Music */}
       {step >= 1 && (
@@ -142,6 +143,7 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
             autoPlay 
             controls 
             playsInline
+            preload="auto"
             className="w-full h-full object-contain"
             onEnded={() => {
               setStep(1);
@@ -348,7 +350,7 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
           </button>
         </div>
       )}
-
+      </div>
     </div>
   );
 };
