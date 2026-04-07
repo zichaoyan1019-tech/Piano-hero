@@ -139,7 +139,7 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
       {step === 0 && (
         <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center animate-fade-in">
           <video 
-            src="https://firebasestorage.googleapis.com/v0/b/pianoherovideo.firebasestorage.app/o/%E5%9D%90%E5%A7%BF%E8%AE%AD%E7%BB%83%E8%90%A5.mp4?alt=media&token=4ca5540c-e413-41cf-8263-43f2380b7595" 
+            src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E5%9D%90%E5%A7%BF%E8%AE%AD%E7%BB%83%E8%90%A5.mp4" 
             autoPlay 
             controls 
             playsInline

@@ -8,7 +8,7 @@ export const VideoIntro: React.FC<VideoIntroProps> = ({ onComplete }) => {
   return (
     <div className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden">
       <video
-        src="https://firebasestorage.googleapis.com/v0/b/pianoherovideo.firebasestorage.app/o/S.mp4?alt=media&token=f2db57b3-7676-4fd3-9196-814870c29b19"
+        src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/S.mp4"
         className="w-full h-full object-cover"
         onEnded={onComplete}
         playsInline
