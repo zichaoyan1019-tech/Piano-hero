@@ -125,6 +125,7 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
   const [placedNumbers, setPlacedNumbers] = useState<(number | null)[]>([null, null, null, null, null]);
   const [voiceover, setVoiceover] = useState("在开始之前，先来看一段小视频吧！");
   const [wrongShake, setWrongShake] = useState<'left' | 'right' | null>(null);
+  const [isVideoBuffering, setIsVideoBuffering] = useState(true);
 
   useEffect(() => {
     setQuestions(generateQuestions());
@@ -252,14 +253,23 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, y: -50 }}
-            className="flex flex-col items-center justify-center w-full h-full z-40"
+            className="flex flex-col items-center justify-center w-full h-full z-40 relative"
           >
+            {isVideoBuffering && (
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+                <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+                <p className="text-white font-bold tracking-widest drop-shadow-md">视频加载中...</p>
+              </div>
+            )}
             <video 
               src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E6%89%8B%E6%8C%87.mp4" 
               controls 
               autoPlay 
               preload="auto"
               playsInline
+              onWaiting={() => setIsVideoBuffering(true)}
+              onPlaying={() => setIsVideoBuffering(false)}
+              onCanPlay={() => setIsVideoBuffering(false)}
               className="w-[90%] max-w-4xl rounded-3xl shadow-2xl border-8 border-white"
               onEnded={handleVideoEnd}
             />

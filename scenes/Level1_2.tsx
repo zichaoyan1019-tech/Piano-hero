@@ -17,6 +17,7 @@ export const Level1_2: React.FC<Level1_2Props> = ({ onComplete }) => {
   const [spriteMessage, setSpriteMessage] = useState("欢迎来到左右手魔法试炼！想成为真正的音乐勇者，必须先分清你的左右手哦！");
   const [isSpriteFlying, setIsSpriteFlying] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const [isVideoBuffering, setIsVideoBuffering] = useState(true);
 
   // Game State
   const [leftHandRaised, setLeftHandRaised] = useState(false);
@@ -326,12 +327,21 @@ export const Level1_2: React.FC<Level1_2Props> = ({ onComplete }) => {
       {/* Fullscreen Video Step */}
       {stage === -1 && (
         <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center animate-fade-in">
+          {isVideoBuffering && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+              <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+              <p className="text-white font-bold tracking-widest drop-shadow-md">视频加载中...</p>
+            </div>
+          )}
           <video 
             src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E5%B7%A6%E5%8F%B3%E6%89%8B.mp4" 
             autoPlay 
             controls 
             playsInline
             preload="auto"
+            onWaiting={() => setIsVideoBuffering(true)}
+            onPlaying={() => setIsVideoBuffering(false)}
+            onCanPlay={() => setIsVideoBuffering(false)}
             className="w-full h-full object-contain"
             onEnded={() => {
               setStage(0);

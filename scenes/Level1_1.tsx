@@ -13,6 +13,7 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
   const [isSpriteFlying, setIsSpriteFlying] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [isVideoBuffering, setIsVideoBuffering] = useState(true);
 
   // Video plays first, no intro sequence needed here
 
@@ -138,12 +139,21 @@ export const Level1_1: React.FC<Level1_1Props> = ({ onComplete }) => {
       {/* Fullscreen Video Step */}
       {step === 0 && (
         <div className="absolute inset-0 z-50 bg-black flex flex-col items-center justify-center animate-fade-in">
+          {isVideoBuffering && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+              <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+              <p className="text-white font-bold tracking-widest drop-shadow-md">视频加载中...</p>
+            </div>
+          )}
           <video 
             src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E5%9D%90%E5%A7%BF%E8%AE%AD%E7%BB%83%E8%90%A5.mp4" 
             autoPlay 
             controls 
             playsInline
             preload="auto"
+            onWaiting={() => setIsVideoBuffering(true)}
+            onPlaying={() => setIsVideoBuffering(false)}
+            onCanPlay={() => setIsVideoBuffering(false)}
             className="w-full h-full object-contain"
             onEnded={() => {
               setStep(1);
