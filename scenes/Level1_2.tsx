@@ -334,7 +334,7 @@ export const Level1_2: React.FC<Level1_2Props> = ({ onComplete }) => {
             </div>
           )}
           <video 
-            src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E5%B7%A6%E5%8F%B3%E6%89%8B.mp4" 
+            src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/3%E6%9C%8814%E6%97%A5.mp4" 
             autoPlay 
             controls 
             playsInline

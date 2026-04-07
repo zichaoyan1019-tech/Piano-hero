@@ -3,6 +3,7 @@ import { Button } from '../components/Button';
 
 interface CoverProps {
   onStart: () => void;
+  onNewGame?: () => void;
   hasSave: boolean;
 }
 
@@ -10,7 +11,7 @@ interface CoverProps {
 // I have left the map URL as a placeholder so the app doesn't crash if you copy-paste immediately.
 const COVER_IMAGE_URL = '/start.png'; 
 
-export const Cover: React.FC<CoverProps> = ({ onStart, hasSave }) => {
+export const Cover: React.FC<CoverProps> = ({ onStart, onNewGame, hasSave }) => {
   return (
     <div className="h-full w-full relative flex flex-col items-center justify-between overflow-hidden font-fredoka">
       {/* Background Image Layer */}
@@ -37,7 +38,7 @@ export const Cover: React.FC<CoverProps> = ({ onStart, hasSave }) => {
         </div>
 
         {/* Start Button Section - Positioned above the piano keys area */}
-        <div className="flex flex-col items-center gap-6 w-full max-w-sm">
+        <div className="flex flex-col items-center gap-4 w-full max-w-sm">
            <Button 
              onClick={onStart} 
              variant="primary" 
@@ -45,10 +46,26 @@ export const Cover: React.FC<CoverProps> = ({ onStart, hasSave }) => {
              fullWidth
              className="shadow-[0_0_20px_rgba(250,204,21,0.6)] hover:scale-105 transition-transform border-4 border-white"
            >
-             <span className="text-2xl drop-shadow-md">{hasSave ? 'CONTINUE ▶' : 'START GAME ▶'}</span>
+             <span className="text-2xl drop-shadow-md">{hasSave ? '继续游戏 (CONTINUE) ▶' : '开始游戏 (START) ▶'}</span>
            </Button>
+
+           {hasSave && onNewGame && (
+             <Button 
+               onClick={() => {
+                 if (window.confirm('重新开始将清除您当前的进度，确定要重新开始吗？')) {
+                   onNewGame();
+                 }
+               }} 
+               variant="secondary" 
+               size="md" 
+               fullWidth
+               className="hover:scale-105 transition-transform border-2 border-white/50 bg-black/50 text-white"
+             >
+               <span className="text-xl drop-shadow-md">重新开始 (NEW GAME) ↺</span>
+             </Button>
+           )}
            
-           <div className="text-white/80 text-xs font-bold bg-black/40 px-4 py-1 rounded-full backdrop-blur-sm border border-white/20">
+           <div className="text-white/80 text-xs font-bold bg-black/40 px-4 py-1 rounded-full backdrop-blur-sm border border-white/20 mt-2">
              Build v0.1.0
            </div>
         </div>

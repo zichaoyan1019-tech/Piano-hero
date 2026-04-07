@@ -262,7 +262,7 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
               </div>
             )}
             <video 
-              src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/%E6%89%8B%E6%8C%87.mp4" 
+              src="https://pianoherovideo.oss-cn-beijing.aliyuncs.com/4%E6%9C%883%E6%97%A5.mp4" 
               controls 
               autoPlay 
               preload="auto"

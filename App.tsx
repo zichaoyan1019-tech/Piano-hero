@@ -41,6 +41,11 @@ export default function App() {
     setScene(hasPlayed ? Scene.WORLD_MAP : Scene.VIDEO_INTRO);
   };
 
+  const startNewGame = () => {
+    setProgress(INITIAL_PROGRESS);
+    setScene(Scene.VIDEO_INTRO);
+  };
+
   const handleIntroComplete = () => {
     setScene(Scene.WORLD_MAP);
   };
@@ -97,7 +102,7 @@ export default function App() {
       <LandscapePrompt />
       
       {scene === Scene.COVER && (
-        <Cover onStart={startGame} hasSave={progress.completedLevels.length > 0} />
+        <Cover onStart={startGame} onNewGame={startNewGame} hasSave={progress.completedLevels.length > 0} />
       )}
 
       {scene === Scene.VIDEO_INTRO && (
