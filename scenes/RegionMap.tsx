@@ -41,10 +41,26 @@ export const RegionMap: React.FC<RegionMapProps> = ({ regionId, progress, onSele
   // Special layout for Home Village (Region 1)
   if (regionId === 'region_1') {
     const buildings = [
-      { id: 'level_1_1', img: '/第一关.png', left: '8%', bottom: '35%' },
-      { id: 'level_1_2', img: '/第二关.png', left: '30%', bottom: '65%' },
-      { id: 'level_1_3', img: '/第三关.png', left: '65%', bottom: '69%' },
-      { id: 'level_1_4', img: '/第四关.png', left: '90%', bottom: '39%' },
+      { 
+        id: 'level_1_1', img: '/第一关.png', left: '8%', bottom: '35%',
+        isUnlocked: true,
+        isCompleted: progress.completedLevels.includes('level_1_1')
+      },
+      { 
+        id: 'level_1_2', img: '/第二关.png', left: '30%', bottom: '65%',
+        isUnlocked: progress.completedLevels.includes('level_1_1'),
+        isCompleted: progress.completedLevels.includes('level_1_2')
+      },
+      { 
+        id: 'level_1_3', img: '/第三关.png', left: '65%', bottom: '69%',
+        isUnlocked: progress.completedLevels.includes('level_1_2'),
+        isCompleted: progress.completedLevels.includes('level_1_3')
+      },
+      { 
+        id: 'level_1_4', img: '/第四关.png', left: '90%', bottom: '39%',
+        isUnlocked: progress.completedLevels.includes('level_1_3'),
+        isCompleted: progress.completedLevels.includes('level_1_4')
+      },
     ];
 
     return (
@@ -77,19 +93,35 @@ export const RegionMap: React.FC<RegionMapProps> = ({ regionId, progress, onSele
 
           {/* Layer 2: Buildings */}
           {buildings.map((b) => (
-            <img
+            <div
               key={b.id}
-              src={b.img}
-              alt={b.id}
-              onClick={() => onSelectLevel(b.id)}
-              className="absolute z-20 cursor-pointer transition-transform duration-300 hover:scale-110 drop-shadow-lg"
+              className={`absolute z-20 ${b.isUnlocked ? 'cursor-pointer' : 'cursor-not-allowed'}`}
               style={{
                 left: b.left,
                 bottom: b.bottom,
                 width: '35%', // Relative to the aspect-ratio container
                 transform: 'translateX(-50%)' 
               }}
-            />
+              onClick={() => b.isUnlocked && onSelectLevel(b.id)}
+            >
+              <div className={`relative transition-transform duration-300 ${b.isUnlocked ? 'hover:scale-110 drop-shadow-lg' : 'opacity-60 grayscale'}`}>
+                <img
+                  src={b.img}
+                  alt={b.id}
+                  className="w-full h-auto"
+                />
+                {b.isCompleted && (
+                  <div className="absolute -top-2 right-1/4 bg-green-500 text-white text-xs md:text-sm font-bold px-2 py-1 rounded-full border-2 border-white shadow-md transform translate-x-1/2 z-30">
+                    ✅ 已完成
+                  </div>
+                )}
+                {!b.isUnlocked && (
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl md:text-5xl drop-shadow-md z-30">
+                    🔒
+                  </div>
+                )}
+              </div>
+            </div>
           ))}
 
           {/* Layer 3: Hero (Placeholder for now) */}

@@ -348,7 +348,7 @@ export const Level1_3: React.FC<Level1_3Props> = ({ onComplete }) => {
             </div>
 
             {/* Interaction Area */}
-            <div className="flex-1 w-full flex items-center justify-center mt-4">
+            <div className="flex-1 w-full flex items-center justify-center mt-4 relative z-20">
               {qPhase === 'select_hand' && (
                 <div className="flex gap-8">
                   <motion.button
